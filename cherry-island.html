@@ -74,7 +74,7 @@
             <p>此作品展現我對遊戲企劃與視覺敘事的整合能力。</p>
         </div>
 
-        <a class="video-link" href="#" data-video="REPLACE_WITH_EMBED_URL">▶ 觀看影片</a>
+        <a class="video-link" href="#" data-video="https://drive.google.com/file/d/129EZtHiRjdIRWu-Pp3lhlfjbuJGMtMJl/view?usp=drive_link">▶ 觀看影片</a>
         <a class="back-link" href="index.html#works">← 返回作品列表</a>
     </section>
 
@@ -95,8 +95,8 @@
             btn.addEventListener('click', function(e){
                 e.preventDefault();
                 var src = this.dataset.video || '';
-                if(!src || src.indexOf('REPLACE_WITH_EMBED_URL')!==-1){
-                    alert('請先在此頁面將 data-video 替換成影片的 embed URL（例如 https://www.youtube.com/embed/影片ID）');
+                if(!src || src.trim() === ''){
+                    alert('影片連結無效，請確認 data-video 已設定為 YouTube embed URL（例如 https://www.youtube.com/embed/影片ID）。');
                     return;
                 }
                 iframe.src = src + (src.indexOf('?')===-1 ? '?rel=0' : '&rel=0');
