@@ -18,11 +18,19 @@
         .project-section { padding: 2rem 10%; max-width: 1000px; margin: 0 auto; }
         .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
         .project-meta div { background: #111; border: 1px solid #222; padding: 1rem 1.2rem; border-radius: 12px; min-width: 180px; }
-        .project-image { height: 420px; background: radial-gradient(circle at center, #111 0%, #0a0a0a 100%); border-radius: 20px; display:flex; justify-content:center; align-items:center; color:#444; margin-bottom:2rem; font-size:1.1rem; }
-        .project-image img { display: none; max-width: 100%; height: auto; border-radius: 12px; }
-        .project-image.has-img img { display: block; }
-        .project-image .placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .project-image.has-img .placeholder { display: none; }
+        .project-carousel { height: 420px; background: radial-gradient(circle at center, #111 0%, #0a0a0a 100%); border-radius: 20px; display: block; position: relative; overflow: hidden; color:#444; margin-bottom:2rem; font-size:1.1rem; }
+        .project-carousel .slides { width: 100%; height: 100%; position: relative; }
+        .project-carousel .slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transform: translateX(100%); transition: transform .4s ease, opacity .4s ease; }
+        .project-carousel .slides img.active { opacity: 1; transform: translateX(0); z-index: 2; }
+        .project-carousel .slides img.incoming { z-index: 2; opacity: 1; }
+        .project-carousel .placeholder { display: none; }
+        .carousel-controls { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; z-index: 5; pointer-events: none; }
+        .carousel-controls button { background: rgba(0,0,0,0.6); border: 1px solid #333; color: #fff; padding: 0.6rem 0.8rem; border-radius: 8px; cursor: pointer; pointer-events: auto; transition: transform .18s ease, background .18s; }
+        .carousel-controls button.prev:hover { transform: translateX(-6px); background: rgba(0,0,0,0.8); }
+        .carousel-controls button.next:hover { transform: translateX(6px); background: rgba(0,0,0,0.8); }
+        .carousel-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0.8rem; display: flex; gap: 0.5rem; z-index: 5; }
+        .carousel-dots button { width: 10px; height: 10px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.25); cursor: pointer; }
+        .carousel-dots button.active { background: #00f0ff; }
         .project-description { background: #111; border: 1px solid #222; border-radius: 20px; padding: 2rem; }
         .project-description h2 { margin-bottom: 1rem; font-size: 2rem; }
         .project-description p { color: #ccc; margin-bottom:1rem; }
@@ -40,7 +48,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">林綵穎 LIN</div>
+        <div class="logo">林綵穎</div>
         <ul class="nav-links">
             <li><a href="index.html#home">首頁</a></li>
             <li><a href="index.html#works">作品展示</a></li>
@@ -56,9 +64,18 @@
     </section>
 
     <section class="project-section">
-        <div class="project-image" data-image="img/zhongli.png">
-            <img alt="中壢撿到啦! 介面展示">
-            <div class="placeholder">中壢撿到啦! 介面展示</div>
+        <div class="project-carousel" data-images="img/zl1.png,img/zl2.png,img/zl3.png">
+            <div class="slides" aria-live="polite">
+                <img src="img/zl1.png" alt="中壢撿到啦! 圖片 1" class="active">
+                <img src="img/zl2.png" alt="中壢撿到啦! 圖片 2">
+                <img src="img/zl3.png" alt="中壢撿到啦! 圖片 3">
+                <div class="placeholder" style="display:none">中壢撿到啦! 介面展示</div>
+            </div>
+            <div class="carousel-controls">
+                <button class="prev" aria-label="上一張">◀</button>
+                <button class="next" aria-label="下一張">▶</button>
+            </div>
+            <div class="carousel-dots" aria-hidden="false"></div>
         </div>
 
         <div class="project-meta">
@@ -110,15 +127,81 @@
     </script>
     <script>
     (function(){
-        var el = document.querySelector('.project-image');
-        if(!el) return;
-        var src = el.getAttribute('data-image');
-        if(!src) return;
-        var img = el.querySelector('img');
-        var tester = new Image();
-        tester.onload = function(){ img.src = src; el.classList.add('has-img'); };
-        tester.onerror = function(){ el.classList.remove('has-img'); };
-        tester.src = src;
+        var carousel = document.querySelector('.project-carousel');
+        if(!carousel) return;
+        var list = (carousel.getAttribute('data-images')||'').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+        var slidesEl = carousel.querySelector('.slides');
+        var dotsEl = carousel.querySelector('.carousel-dots');
+        var prevBtn = carousel.querySelector('.prev');
+        var nextBtn = carousel.querySelector('.next');
+        var current = 0;
+        var timer = null;
+        function show(index, direction){
+            index = (index+list.length)%list.length;
+            var imgs = slidesEl.querySelectorAll('img');
+            if(imgs.length===0) return;
+            if(index === current){ return; }
+            var outgoing = imgs[current];
+            var incoming = imgs[index];
+            imgs.forEach(function(i){
+                i.classList.remove('active','incoming');
+                i.style.transition = '';
+            });
+            if(incoming){
+                incoming.classList.add('incoming');
+                incoming.style.transition = 'none';
+                incoming.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+                incoming.style.opacity = '1';
+                incoming.style.zIndex = '2';
+                void incoming.offsetWidth;
+                incoming.style.transition = 'transform .4s ease, opacity .4s ease';
+                incoming.style.transform = 'translateX(0)';
+            }
+            if(outgoing){
+                outgoing.style.transition = 'transform .4s ease, opacity .4s ease';
+                outgoing.style.transform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
+                outgoing.style.opacity = '0';
+                outgoing.style.zIndex = '1';
+            }
+            if(incoming){
+                incoming.classList.add('active');
+            }
+            var dots = dotsEl.querySelectorAll('button');
+            dots.forEach(function(d){ d.classList.remove('active'); });
+            if(dots[index]) dots[index].classList.add('active');
+            current = index;
+        }
+        function startAuto(){ timer = setInterval(function(){ show(current+1, 'next'); }, 4000); }
+        function stopAuto(){ if(timer){ clearInterval(timer); timer = null; } }
+        var existingImgs = slidesEl.querySelectorAll('img');
+        if(existingImgs && existingImgs.length){
+            existingImgs.forEach(function(img, i){
+                img.onerror = function(){ this.style.display = 'none'; };
+                var dot = document.createElement('button');
+                dot.addEventListener('click', function(){ stopAuto(); show(i, i > current ? 'next' : 'prev'); });
+                dotsEl.appendChild(dot);
+            });
+            show(0);
+            startAuto();
+        } else if(list.length){
+            slidesEl.innerHTML = '';
+            list.forEach(function(src, i){
+                var img = document.createElement('img');
+                img.alt = '中壢撿到啦! 圖片 ' + (i+1);
+                img.src = src;
+                img.onerror = function(){ this.style.display = 'none'; };
+                slidesEl.appendChild(img);
+                var dot = document.createElement('button');
+                dot.addEventListener('click', function(){ stopAuto(); show(i, i > current ? 'next' : 'prev'); });
+                dotsEl.appendChild(dot);
+            });
+            show(0);
+            startAuto();
+        }
+        if(prevBtn) prevBtn.addEventListener('click', function(){ stopAuto(); show(current-1, 'prev'); });
+        if(nextBtn) nextBtn.addEventListener('click', function(){ stopAuto(); show(current+1, 'next'); });
+        carousel.addEventListener('mouseenter', stopAuto);
+        carousel.addEventListener('mouseleave', startAuto);
     })();
     </script>
 
