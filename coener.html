@@ -19,6 +19,10 @@
         .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
         .project-meta div { background: #111; border: 1px solid #222; padding: 1rem 1.2rem; border-radius: 12px; min-width: 180px; }
         .project-image { height: 420px; background: radial-gradient(circle at center, #111 0%, #0a0a0a 100%); border-radius: 20px; display:flex; justify-content:center; align-items:center; color:#444; margin-bottom:2rem; font-size:1.1rem; }
+        .project-image img { display: none; max-width: 100%; height: auto; border-radius: 12px; }
+        .project-image.has-img img { display: block; }
+        .project-image .placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+        .project-image.has-img .placeholder { display: none; }
         .project-description { background: #111; border: 1px solid #222; border-radius: 20px; padding: 2rem; }
         .project-description h2 { margin-bottom: 1rem; font-size: 2rem; }
         .project-description p { color: #ccc; margin-bottom:1rem; }
@@ -52,7 +56,10 @@
     </section>
 
     <section class="project-section">
-        <div class="project-image">COENER App 原型展示</div>
+        <div class="project-image" data-image="img/coener.png">
+            <img alt="COENER App 原型展示">
+            <div class="placeholder">COENER App 原型展示</div>
+        </div>
 
         <div class="project-meta">
             <div><strong>類型</strong><br>UI/UX Design</div>
@@ -100,6 +107,19 @@
             modal.addEventListener('click', function(e){ if(e.target===modal){ modal.classList.remove('open'); iframe.src = ''; modal.setAttribute('aria-hidden','true'); } });
         }
     });
+    </script>
+    <script>
+    (function(){
+        var el = document.querySelector('.project-image');
+        if(!el) return;
+        var src = el.getAttribute('data-image');
+        if(!src) return;
+        var img = el.querySelector('img');
+        var tester = new Image();
+        tester.onload = function(){ img.src = src; el.classList.add('has-img'); };
+        tester.onerror = function(){ el.classList.remove('has-img'); };
+        tester.src = src;
+    })();
     </script>
 
     <footer class="footer">

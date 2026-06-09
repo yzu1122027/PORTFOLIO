@@ -61,6 +61,10 @@
             margin-bottom: 2rem;
             font-size: 1.1rem;
         }
+        .project-image img { display: none; max-width: 100%; height: auto; border-radius: 12px; }
+        .project-image.has-img img { display: block; }
+        .project-image .placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+        .project-image.has-img .placeholder { display: none; }
         .project-description {
             background: #111;
             border: 1px solid #222;
@@ -104,7 +108,10 @@
     </section>
 
     <section class="project-section">
-        <div class="project-image">BALLBALL YOU 截圖展示區</div>
+        <div class="project-image" data-image="img/bby.png">
+            <img alt="BALLBALL YOU 截圖展示">
+            <div class="placeholder">BALLBALL YOU 截圖展示區</div>
+        </div>
 
         <div class="project-meta">
             <div><strong>類型</strong><br>Game Design</div>
@@ -152,6 +159,20 @@
             modal.addEventListener('click', function(e){ if(e.target===modal){ modal.classList.remove('open'); iframe.src = ''; modal.setAttribute('aria-hidden','true'); } });
         }
     });
+    </script>
+    <script>
+    (function(){
+        var el = document.querySelector('.project-image');
+        if(!el) return;
+        var src = el.getAttribute('data-image');
+        if(!src) return;
+        var img = el.querySelector('img');
+        var placeholder = el.querySelector('.placeholder');
+        var tester = new Image();
+        tester.onload = function(){ img.src = src; el.classList.add('has-img'); };
+        tester.onerror = function(){ el.classList.remove('has-img'); };
+        tester.src = src;
+    })();
     </script>
 
     <footer class="footer">
