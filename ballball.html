@@ -100,7 +100,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">林綵穎</div>
+        <a class="logo" href="index.html#home">林綵穎</a>
         <ul class="nav-links">
             <li><a href="index.html#home">首頁</a></li>
             <li><a href="index.html#works">作品展示</a></li>
@@ -163,11 +163,26 @@
         if(btn && modal && iframe){
             btn.addEventListener('click', function(e){
                 e.preventDefault();
-                var src = this.dataset.video || '';
-                if(!src || src.indexOf('REPLACE_WITH_EMBED_URL')!==-1){
-                    alert('https://youtu.be/adc6c8hIcTM?si=qfZ4XB30-KA5zDYR');
+                var src = (this.dataset.video || '').trim();
+                if(!src){
+                    alert('影片連結無效，請聯絡作者。');
                     return;
                 }
+                // 支援 youtu.be 短址、watch?v 與 embed 格式，自動轉換為 embed
+                try {
+                    if(src.indexOf('youtu.be/') !== -1){
+                        var id = src.split('youtu.be/')[1].split(/[?&]/)[0];
+                        src = 'https://www.youtube.com/embed/' + id;
+                    } else if(src.indexOf('watch?v=') !== -1){
+                        var id = src.split('watch?v=')[1].split(/[?&]/)[0];
+                        src = 'https://www.youtube.com/embed/' + id;
+                    } else if(src.indexOf('/embed/') === -1 && src.indexOf('youtube.com') !== -1){
+                        var parts = src.split('/');
+                        var id = parts[parts.length-1].split(/[?&]/)[0];
+                        src = 'https://www.youtube.com/embed/' + id;
+                    }
+                } catch (err){ /* ignore and use original src */ }
+
                 iframe.src = src + (src.indexOf('?')===-1 ? '?rel=0' : '&rel=0');
                 modal.classList.add('open');
                 modal.setAttribute('aria-hidden','false');

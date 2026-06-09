@@ -40,7 +40,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">林綵穎</div>
+        <a class="logo" href="index.html#home">林綵穎</a>
         <ul class="nav-links">
             <li><a href="index.html#home">首頁</a></li>
             <li><a href="index.html#works">作品展示</a></li>
@@ -87,14 +87,37 @@
         if(btn && modal && iframe){
             btn.addEventListener('click', function(e){
                 e.preventDefault();
-                var src = this.dataset.video || '';
-                if(!src || src.indexOf('REPLACE_WITH_EMBED_URL')!==-1){
-                    alert('請先在此頁面將 data-video 替換成影片的 embed URL（例如 https://www.youtube.com/embed/影片ID）');
+                var src = (this.dataset.video || '').trim();
+                if(!src){
+                    alert('影片連結無效，請聯絡作者。');
                     return;
                 }
-                iframe.src = src + (src.indexOf('?')===-1 ? '?rel=0' : '&rel=0');
-                modal.classList.add('open');
-                modal.setAttribute('aria-hidden','false');
+                try{
+                    if(src.indexOf('drive.google.com') !== -1){
+                        var m = src.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                        if(m && m[1]){ src = 'https://drive.google.com/file/d/' + m[1] + '/preview'; iframe.src = src; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); return; }
+                        window.open(src, '_blank'); return;
+                    }
+                    if(src.indexOf('youtu.be/') !== -1){
+                        var id = src.split('youtu.be/')[1].split(/[?&]/)[0];
+                        src = 'https://www.youtube.com/embed/' + id;
+                    } else if(src.indexOf('watch?v=') !== -1){
+                        var id = src.split('watch?v=')[1].split(/[?&]/)[0];
+                        src = 'https://www.youtube.com/embed/' + id;
+                    } else if(src.indexOf('/embed/') === -1 && src.indexOf('youtube.com') !== -1){
+                        var parts = src.split('/');
+                        var id = parts[parts.length-1].split(/[?&]/)[0];
+                        src = 'https://www.youtube.com/embed/' + id;
+                    }
+                }catch(err){}
+
+                if(src.indexOf('youtube.com') !== -1 || src.indexOf('embed') !== -1){
+                    iframe.src = src + (src.indexOf('?')===-1 ? '?rel=0' : '&rel=0');
+                    modal.classList.add('open');
+                    modal.setAttribute('aria-hidden','false');
+                } else {
+                    window.open(src, '_blank');
+                }
             });
             closeBtn.addEventListener('click', function(e){ e.preventDefault(); modal.classList.remove('open'); iframe.src = ''; modal.setAttribute('aria-hidden','true'); });
             modal.addEventListener('click', function(e){ if(e.target===modal){ modal.classList.remove('open'); iframe.src = ''; modal.setAttribute('aria-hidden','true'); } });

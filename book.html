@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書籍封面設計：《白癡》 — 作品詳情 | 林綵穎</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #050505; color: #fff; line-height: 1.7; }
+        a { color: inherit; text-decoration: none; }
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-size: 1.2rem; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a:hover { color: #00f0ff; }
+        .hero { min-height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 12rem 1rem 4rem; background: linear-gradient(180deg, #11151a 0%, #050505 100%); }
+        .hero h1 { font-size: 3rem; letter-spacing: 4px; margin-bottom: 1rem; color: #e0e0e0; text-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
+        .hero p { color: #aaa; max-width: 700px; margin: 0 auto; }
+        .project-section { padding: 2rem 10%; max-width: 1000px; margin: 0 auto; }
+        .project-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .project-meta div { background: #111; border: 1px solid #222; padding: 1rem 1.2rem; border-radius: 12px; }
+        .project-image { height: 500px; background: radial-gradient(circle at center, #1c222a 0%, #0a0a0a 100%); border-radius: 20px; display:flex; justify-content:center; align-items:center; color:#444; margin-bottom:2rem; font-size:1.1rem; border: 1px solid #2c3540; }
+        .project-image img { display: none; max-width: 100%; height: 90%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .project-image.has-img img { display: block; }
+        .project-image .placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #a0a0a0; font-weight: bold; }
+        .project-image.has-img .placeholder { display: none; }
+        .project-description { background: #111; border: 1px solid #222; border-radius: 20px; padding: 2rem; margin-bottom: 2rem; }
+        .project-description h2 { margin-bottom: 1.5rem; font-size: 2rem; border-bottom: 1px solid #222; padding-bottom: 0.5rem; color: #e0e0e0; }
+        .project-description h3 { margin: 1.5rem 0 0.5rem; font-size: 1.3rem; color: #00f0ff; }
+        .project-description p { color: #ccc; margin-bottom:1rem; }
+        .project-description ul { margin-left: 1.5rem; margin-bottom: 1rem; color: #ccc; }
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+        .back-link { display: inline-block; padding: 0.9rem 1.6rem; border: 1px solid #888; color: #aaa; border-radius: 30px; transition: 0.3s; }
+        .back-link:hover { background: #eee; color: #050505; box-shadow: 0 0 15px #fff; border-color: #fff; }
+        .footer { text-align: center; padding: 4rem 10%; color: #888; border-top: 1px solid #111; }
+        @media (max-width: 768px) { .navbar { padding: 1rem 5%; } .hero { padding: 10rem 1rem 3rem; } .project-section { padding: 2rem 5%; } .project-meta { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="logo" href="index.html#home">林綵穎</a>
+        <ul class="nav-links">
+            <li><a href="index.html#home">首頁</a></li>
+            <li><a href="index.html#works">作品展示</a></li>
+            <li><a href="index.html#contact">聯絡我</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div>
+            <h1>書籍封面設計：《白癡》</h1>
+            <p>運用經典文學意象進行的視覺重構。透過多層次的光影編排與影像合成技術，嘗試以視覺化方式呈現作品中純真人格與虛無主義社會環境的對比衝突。</p>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="project-image" data-image="img/book.png">
+            <img alt="《白癡》書籍封面設計展示">
+            <div class="placeholder">📖 《白癡》封面設計視覺 (ИДИОТ)</div>
+        </div>
+
+        <div class="project-meta">
+            <div><strong>作品類型</strong><br>Graphic Design / 平面設計</div>
+            <div><strong>設計工具</strong><br>Photoshop</div>
+            <div><strong>文學藍本</strong><br>費奧多爾·杜斯妥也夫斯基</div>
+            <div><strong>技術亮點</strong><br>多層次光影 / 影像合成 / 去背構圖</div>
+        </div>
+
+        <div class="project-description">
+            <h2>作品說明</h2>
+            <p>本專案選用俄國寫實主義文學大師費奧多爾·杜斯妥也夫斯基的經典長篇小說《白癡（Идиот）》為核心藍本進行封面重構設計 [cite: 191]。</p>
+            
+            <h3>文學背景與視覺轉譯</h3>
+            <p>《白癡》深刻反映了一八六一年改革後的俄國社會，猛烈批評了社會道德墮落、宗教蛻變以及知識分子的虛無主義思想，並形塑了梅什金公爵這一理想化的純真典型 [cite: 191]。在設計構思上，我專注於如何將這種「純真靈魂」與「冰冷社會指責」的巨大衝突進行視覺轉譯 [cite: 191]。</p>
+
+            <h3>核心技術實踐</h3>
+            <ul>
+                <li><strong>素材去背與重組</strong>：將採集的圖像素材進行精細去背，打破原本的空間框架限制，重新在畫布上進行戲劇性的構圖佈局 [cite: 191]。</li>
+                <li><strong>多層次光影編排</strong>：利用 Photoshop 調校出高反差且具壓迫感的光影層次，完美烘托出小說中主角被周遭冷眼與道德評判包圍的沉重氛圍 [cite: 191]。</li>
+                <li><strong>視覺化衝突呈現</strong>：以強烈的主體背影對比四周無形的批判性符號，透過視覺語彙勾勒出純真人格與社會環境的對比撕裂感 [cite: 191]。</li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <a class="back-link" href="index.html#works">← 返回作品列表</a>
+        </div>
+    </section>
+
+    <script>
+    (function(){
+        var el = document.querySelector('.project-image');
+        if(!el) return;
+        var src = el.getAttribute('data-image');
+        if(!src) return;
+        var img = el.querySelector('img');
+        var tester = new Image();
+        tester.onload = function(){ img.src = src; el.classList.add('has-img'); };
+        tester.onerror = function(){ el.classList.remove('has-img'); };
+        tester.src = src;
+    })();
+    </script>
+
+    <footer class="footer">
+        <p>© 2026 LIN CAI YING. Powered by HTML & CSS.</p>
+    </footer>
+</body>
+</html>
