@@ -24,6 +24,12 @@
         .project-description p { color: #ccc; margin-bottom:1rem; }
         .back-link { display: inline-block; margin-top: 2rem; padding: 0.9rem 1.6rem; border: 1px solid #00f0ff; border-radius: 30px; transition: 0.3s; }
         .back-link:hover { background: #00f0ff; color: #050505; }
+        .video-link { display: inline-block; margin-top: 1rem; margin-left: 1rem; padding: 0.9rem 1.6rem; background: #00f0ff; color: #050505; border-radius: 30px; text-decoration: none; }
+        .video-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.75); z-index: 2000; }
+        .video-modal.open { display: flex; }
+        .video-modal .content { width: min(900px, 95%); background: #000; border-radius: 12px; overflow: hidden; }
+        .video-modal iframe { width: 100%; height: 56vw; max-height: 560px; border: 0; display: block; }
+        .video-modal .close { display: inline-block; padding: 0.6rem 1rem; background: #111; color: #fff; text-decoration: none; }
         .footer { text-align: center; padding: 4rem 10%; color: #888; border-top: 1px solid #111; }
         @media (max-width: 768px) { .navbar { padding: 1rem 5%; } .hero { padding: 10rem 1rem 3rem; } .project-section { padding: 2rem 5%; } .project-meta { flex-direction: column; } }
     </style>
@@ -61,8 +67,40 @@
             <p>此作品展現我在使用者體驗設計與介面美感上的整體能力。</p>
         </div>
 
+        <a class="video-link" href="#" data-video="REPLACE_WITH_EMBED_URL">▶ 觀看影片</a>
         <a class="back-link" href="index.html#works">← 返回作品列表</a>
     </section>
+
+    <div id="videoModal" class="video-modal" aria-hidden="true">
+        <div class="content">
+            <a href="#" class="close" aria-label="關閉影片">關閉 ✕</a>
+            <iframe src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var btn = document.querySelector('.video-link');
+        var modal = document.getElementById('videoModal');
+        var iframe = modal && modal.querySelector('iframe');
+        var closeBtn = modal && modal.querySelector('.close');
+        if(btn && modal && iframe){
+            btn.addEventListener('click', function(e){
+                e.preventDefault();
+                var src = this.dataset.video || '';
+                if(!src || src.indexOf('REPLACE_WITH_EMBED_URL')!==-1){
+                    alert('請先在此頁面將 data-video 替換成影片的 embed URL（例如 https://www.youtube.com/embed/影片ID）');
+                    return;
+                }
+                iframe.src = src + (src.indexOf('?')===-1 ? '?rel=0' : '&rel=0');
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden','false');
+            });
+            closeBtn.addEventListener('click', function(e){ e.preventDefault(); modal.classList.remove('open'); iframe.src = ''; modal.setAttribute('aria-hidden','true'); });
+            modal.addEventListener('click', function(e){ if(e.target===modal){ modal.classList.remove('open'); iframe.src = ''; modal.setAttribute('aria-hidden','true'); } });
+        }
+    });
+    </script>
 
     <footer class="footer">
         <p>© 2026 LIN CAI YING. Powered by HTML & CSS.</p>
