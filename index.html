@@ -149,13 +149,17 @@
         }
         /* 模擬圖片區 */
         .item-image {
-            height: 280px;
             background: #222;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #444;
-            font-weight: bold;
+            padding: 1rem;
+        }
+        .item-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
         .item-info {
             padding: 2rem;
@@ -244,7 +248,7 @@
         <div class="portfolio-grid">
             
             <a class="portfolio-item game" href="ballball.html">
-                <div class="item-image"><div class="img/bby.png"></div></div>
+                <div class="item-image"><img src="img/bby1.png" alt="BALLBALL YOU 專案圖示"></div>
                 <div class="item-info">
                     <span class="item-tag">Game Design</span>
                     <h3 class="item-title">BALLBALL YOU —— 巨人國度的球類競技場</h3>
@@ -253,7 +257,7 @@
             </a>
 
             <a class="portfolio-item interactive" href="sign-language.html">
-                <div class="item-image"><div class="img/sign-language.png"></div></div>
+                <div class="item-image"><img src="img/sign-language.png" alt="被看見的手語 專案圖示"></div>
                 <div class="item-info">
                     <span class="item-tag">Interactive Art</span>
                     <h3 class="item-title">被看見的手語 —— 將無聲語言轉化為動態藝術</h3>
@@ -262,7 +266,7 @@
             </a>
 
             <a class="portfolio-item web" href="zhongli.html">
-                <div class="item-image">中壢撿到啦! 介面位置</div>
+                <div class="item-image"><img src="img/zl1.png" alt="中壢撿到啦! 介面位置"></div>
                 <div class="item-info">
                     <span class="item-tag">Web Development</span>
                     <h3 class="item-title">中壢撿到啦! (在地社群互助平台)</h3>
@@ -271,7 +275,7 @@
             </a>
 
             <a class="portfolio-item uiux" href="coener.html">
-                <div class="item-image">COENER App 原型位置</div>
+                <div class="item-image"><img src="img/coener.png" alt="COENER App 原型位置"></div>
                 <div class="item-info">
                     <span class="item-tag">UI/UX Design</span>
                     <h3 class="item-title">COENER —— 智慧住宅能源管理 App</h3>
@@ -280,7 +284,7 @@
             </a>
 
             <a class="portfolio-item planning" href="cherry-island.html">
-                <div class="item-image">噗通櫻桃島 企劃位置</div>
+                <div class="item-image"><img src="img/cherry-island.png" alt="噗通櫻桃島 企劃位置"></div>
                 <div class="item-info">
                     <span class="item-tag">Game Planning</span>
                     <h3 class="item-title">噗通櫻桃島 —— 完整開發企劃與視覺統籌</h3>
@@ -288,7 +292,7 @@
                 </div>
             </a>
             <a class="portfolio-item graphic" href="book.html">
-                <div class="item-image">封面設計</div>
+                <div class="item-image"><img src="img/book.png" alt="封面設計"></div>
                 <div class="item-info">
                     <span class="item-tag">Graphic Design</span>
                     <h3 class="item-title">封面設計 —— 創意視覺呈現</h3>
