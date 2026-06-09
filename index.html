@@ -125,13 +125,16 @@
         /* 作品網格佈局 */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            max-width: 920px;
+            margin: 0 auto;
         }
         .portfolio-item {
+            display: block;
             background: #111;
             border: 1px solid #222;
-            border-radius: 12px;
+            border-radius: 18px;
             overflow: hidden;
             transition: transform 0.3s, border-color 0.3s;
         }
@@ -139,9 +142,14 @@
             transform: translateY(-5px);
             border-color: #00f0ff;
         }
+        .portfolio-item {
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
         /* 模擬圖片區 */
         .item-image {
-            height: 200px;
+            height: 280px;
             background: #222;
             display: flex;
             align-items: center;
@@ -150,24 +158,24 @@
             font-weight: bold;
         }
         .item-info {
-            padding: 1.5rem;
+            padding: 2rem;
         }
         .item-tag {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #ff007f;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
             display: inline-block;
         }
         .item-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
         }
         .item-desc {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #aaa;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* --- 5. 聯絡資訊 Footer --- */
@@ -224,59 +232,69 @@
         <h2 class="section-title">PORTFOLIO</h2>
         
         <div class="filter-container">
-            <button class="filter-btn active" onclick="filterSelection('all')">顯示全部</button>
-            <button class="filter-btn" onclick="filterSelection('game')">🎮 遊戲作品</button>
-            <button class="filter-btn" onclick="filterSelection('interactive')">🖐️ 互動設計</button>
-            <button class="filter-btn" onclick="filterSelection('web')">💻 網頁前端</button>
-            <button class="filter-btn" onclick="filterSelection('uiux')">📱 UI/UX</button>
+            <button class="filter-btn active" onclick="filterSelection(event, 'all')">顯示全部</button>
+            <button class="filter-btn" onclick="filterSelection(event, 'game')">遊戲</button>
+            <button class="filter-btn" onclick="filterSelection(event, 'interactive')">互動</button>
+            <button class="filter-btn" onclick="filterSelection(event, 'web')">網頁</button>
+            <button class="filter-btn" onclick="filterSelection(event, 'uiux')">體驗設計</button>
+            <button class="filter-btn" onclick="filterSelection(event, 'planning')">企劃</button>
+            <button class="filter-btn" onclick="filterSelection(event, 'graphic')">平面</button>
         </div>
 
         <div class="portfolio-grid">
             
-            <div class="portfolio-item game">
+            <a class="portfolio-item game" href="ballball.html">
                 <div class="item-image">BALLBALL YOU 截圖位置</div>
                 <div class="item-info">
                     <span class="item-tag">Game Design</span>
                     <h3 class="item-title">BALLBALL YOU —— 巨人國度的球類競技場</h3>
                     <p class="item-desc">透過 Delightex 平台進行精密場景建模，刻意放大環境物件與玩家比例差距，營造強烈的視覺壓迫與探索樂趣。</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-item interactive">
+            <a class="portfolio-item interactive" href="sign-language.html">
                 <div class="item-image">被看見的手語 影片位置</div>
                 <div class="item-info">
                     <span class="item-tag">Interactive Art</span>
                     <h3 class="item-title">被看見的手語 —— 將無聲語言轉化為動態藝術</h3>
                     <p class="item-desc">透過 TouchDesigner 串接 MediaPipe 手勢辨識技術，實現極低延遲即時監測，將手語轉化為流動的粒子視覺系統。</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-item web">
+            <a class="portfolio-item web" href="zhongli.html">
                 <div class="item-image">中壢撿到啦! 介面位置</div>
                 <div class="item-info">
                     <span class="item-tag">Web Development</span>
                     <h3 class="item-title">中壢撿到啦! (在地社群互助平台)</h3>
                     <p class="item-desc">負責平台前端開發。重新梳理資訊架構，做出關鍵字過濾搜尋與會員互動系統，優化使用者的操作流向與效率。</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-item uiux">
+            <a class="portfolio-item uiux" href="coener.html">
                 <div class="item-image">COENER App 原型位置</div>
                 <div class="item-info">
                     <span class="item-tag">UI/UX Design</span>
                     <h3 class="item-title">COENER —— 智慧住宅能源管理 App</h3>
                     <p class="item-desc">運用 Figma 打造智慧住宅 App。透過 UI/UX 研究、服務藍圖與使用者歷程地圖分析，設計出兼具功能與美感的介面。</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="portfolio-item game">
+            <a class="portfolio-item planning" href="cherry-island.html">
                 <div class="item-image">噗通櫻桃島 企劃位置</div>
                 <div class="item-info">
                     <span class="item-tag">Game Planning</span>
                     <h3 class="item-title">噗通櫻桃島 —— 完整開發企劃與視覺統籌</h3>
                     <p class="item-desc">從世界觀設定、核心遊戲機制到開發企劃書的完整流程，確保從靜態文宣到動態影像皆能精準傳達清新治癒氛圍。</p>
                 </div>
-            </div>
+            </a>
+            <a class="portfolio-item graphic" href="book.html">
+                <div class="item-image">封面設計</div>
+                <div class="item-info">
+                    <span class="item-tag">Graphic Design</span>
+                    <h3 class="item-title">封面設計 —— 創意視覺呈現</h3>
+                    <p class="item-desc">透過精心設計的視覺元素，將書籍內容的核心概念以引人入勝的方式呈現，吸引讀者注意。</p>
+                </div>
+            </a>
 
         </div>
     </section>
@@ -284,14 +302,14 @@
     <footer id="contact" class="footer">
         <h3>LET'S CONNECT!</h3>
         <div class="contact-info">
-            <p>📧 Email：Icy000505@gmail.com</p>
-            <p>📞 電話：0916-549-199</p>
+            <p>Email：Icy000505@gmail.com</p>
+            <p>Phone：0916-549-199</p>
         </div>
         <p class="copyright">© 2026 LIN CAI YING. Powered by HTML & CSS.</p>
     </footer>
 
     <script>
-        function filterSelection(category) {
+        function filterSelection(event, category) {
             const items = document.querySelectorAll('.portfolio-item');
             const buttons = document.querySelectorAll('.filter-btn');
             

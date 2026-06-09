@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中壢撿到啦! — 作品詳情 | 林綵穎</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #050505; color: #fff; line-height: 1.7; }
+        a { color: inherit; text-decoration: none; }
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-size: 1.2rem; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a:hover { color: #00f0ff; }
+        .hero { min-height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 12rem 1rem 4rem; background: linear-gradient(180deg, #10101a 0%, #050505 100%); }
+        .hero h1 { font-size: 3rem; letter-spacing: 4px; margin-bottom: 1rem; }
+        .hero p { color: #aaa; max-width: 700px; margin: 0 auto; }
+        .project-section { padding: 2rem 10%; max-width: 1000px; margin: 0 auto; }
+        .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+        .project-meta div { background: #111; border: 1px solid #222; padding: 1rem 1.2rem; border-radius: 12px; min-width: 180px; }
+        .project-image { height: 420px; background: radial-gradient(circle at center, #111 0%, #0a0a0a 100%); border-radius: 20px; display:flex; justify-content:center; align-items:center; color:#444; margin-bottom:2rem; font-size:1.1rem; }
+        .project-description { background: #111; border: 1px solid #222; border-radius: 20px; padding: 2rem; }
+        .project-description h2 { margin-bottom: 1rem; font-size: 2rem; }
+        .project-description p { color: #ccc; margin-bottom:1rem; }
+        .back-link { display: inline-block; margin-top: 2rem; padding: 0.9rem 1.6rem; border: 1px solid #00f0ff; border-radius: 30px; transition: 0.3s; }
+        .back-link:hover { background: #00f0ff; color: #050505; }
+        .footer { text-align: center; padding: 4rem 10%; color: #888; border-top: 1px solid #111; }
+        @media (max-width: 768px) { .navbar { padding: 1rem 5%; } .hero { padding: 10rem 1rem 3rem; } .project-section { padding: 2rem 5%; } .project-meta { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">林綵穎 LIN</div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">首頁</a></li>
+            <li><a href="index.html#works">作品展示</a></li>
+            <li><a href="index.html#contact">聯絡我</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div>
+            <h1>中壢撿到啦!</h1>
+            <p>在地社群互助平台。重新梳理資訊架構，做出關鍵字過濾搜尋與會員互動系統，優化使用者的操作流程與效率。</p>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="project-image">中壢撿到啦! 介面展示</div>
+
+        <div class="project-meta">
+            <div><strong>類型</strong><br>Web Development</div>
+            <div><strong>工具</strong><br>HTML / CSS / JavaScript</div>
+            <div><strong>重點</strong><br>資訊架構、搜尋過濾、會員互動</div>
+        </div>
+
+        <div class="project-description">
+            <h2>作品說明</h2>
+            <p>本作品聚焦於地方社群互助，設計關鍵字搜尋與過濾功能，提升用戶尋找物品或公告的效率。資訊架構清晰，讓使用者可以快速瀏覽、發布與管理內容。</p>
+            <p>我負責前端介面設計與互動流程，確保操作步驟直覺且不中斷。特別強調頁面響應式調整，讓使用者在手機與桌面都能順暢瀏覽。</p>
+            <p>此作品展現我對於使用者需求與網頁前端整體體驗的掌握。</p>
+        </div>
+
+        <a class="back-link" href="index.html#works">← 返回作品列表</a>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 LIN CAI YING. Powered by HTML & CSS.</p>
+    </footer>
+</body>
+</html>

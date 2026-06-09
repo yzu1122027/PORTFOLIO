@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>被看見的手語 — 作品詳情 | 林綵穎</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #050505; color: #fff; line-height: 1.7; }
+        a { color: inherit; text-decoration: none; }
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-size: 1.2rem; font-weight: bold; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a:hover { color: #00f0ff; }
+        .hero { min-height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 12rem 1rem 4rem; background: linear-gradient(180deg, #10101a 0%, #050505 100%); }
+        .hero h1 { font-size: 3rem; letter-spacing: 4px; margin-bottom: 1rem; }
+        .hero p { color: #aaa; max-width: 700px; margin: 0 auto; }
+        .project-section { padding: 2rem 10%; max-width: 1000px; margin: 0 auto; }
+        .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+        .project-meta div { background: #111; border: 1px solid #222; padding: 1rem 1.2rem; border-radius: 12px; min-width: 180px; }
+        .project-image { height: 420px; background: radial-gradient(circle at center, #111 0%, #0a0a0a 100%); border-radius: 20px; display:flex; justify-content:center; align-items:center; color:#444; margin-bottom:2rem; font-size:1.1rem; }
+        .project-description { background: #111; border: 1px solid #222; border-radius: 20px; padding: 2rem; }
+        .project-description h2 { margin-bottom: 1rem; font-size: 2rem; }
+        .project-description p { color: #ccc; margin-bottom:1rem; }
+        .back-link { display: inline-block; margin-top: 2rem; padding: 0.9rem 1.6rem; border: 1px solid #00f0ff; border-radius: 30px; transition: 0.3s; }
+        .back-link:hover { background: #00f0ff; color: #050505; }
+        .footer { text-align: center; padding: 4rem 10%; color: #888; border-top: 1px solid #111; }
+        @media (max-width: 768px) { .navbar { padding: 1rem 5%; } .hero { padding: 10rem 1rem 3rem; } .project-section { padding: 2rem 5%; } .project-meta { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">林綵穎 LIN</div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">首頁</a></li>
+            <li><a href="index.html#works">作品展示</a></li>
+            <li><a href="index.html#contact">聯絡我</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div>
+            <h1>被看見的手語</h1>
+            <p>將無聲語言轉化為動態藝術。透過 TouchDesigner 串接 MediaPipe 手勢辨識技術，實現極低延遲即時監測，將手語轉化為流動的粒子視覺系統。</p>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="project-image">手語動態藝術視覺</div>
+
+        <div class="project-meta">
+            <div><strong>類型</strong><br>Interactive Art</div>
+            <div><strong>工具</strong><br>TouchDesigner / MediaPipe</div>
+            <div><strong>重點</strong><br>即時辨識、視覺轉換、互動回饋</div>
+        </div>
+
+        <div class="project-description">
+            <h2>作品說明</h2>
+            <p>本作品將手語動作轉換為粒子動畫與色彩流動，讓觀眾在視覺上「看見」原本無聲的語言。透過低延遲手勢辨識，系統即時回應使用者手勢，打造流暢的互動體驗。</p>
+            <p>我負責系統串接與畫面構成，設計出能夠呈現手語節奏與語氣的視覺元素，並優化辨識穩定性、增強整體互動回饋。</p>
+            <p>此作品示範我在互動設計與跨平台串接方面的能力。</p>
+        </div>
+
+        <a class="back-link" href="index.html#works">← 返回作品列表</a>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 LIN CAI YING. Powered by HTML & CSS.</p>
+    </footer>
+</body>
+</html>
